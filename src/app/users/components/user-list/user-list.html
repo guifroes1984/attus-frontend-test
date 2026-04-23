@@ -11,6 +11,10 @@
     <mat-card *ngFor="let user of users" class="user-card">
       <h3>{{ user.nome }}</h3>
       <p>{{ user.email }}</p>
+
+      <button mat-button color="primary" (click)="openDialog(user)">
+        Editar
+      </button>
     </mat-card>
 
     <div *ngIf="!users.length && !loading">
@@ -18,3 +22,7 @@
     </div>
   </div>
 </div>
+
+<button mat-fab color="warn" class="fab" (click)="openDialog()">
+  +
+</button>

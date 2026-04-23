@@ -1,0 +1,23 @@
+<h2>Usuário</h2>
+
+<form [formGroup]="form">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Nome" formControlName="nome" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Email" formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="CPF" formControlName="cpf" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Telefone" formControlName="telefone" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="salvar()" [disabled]="form.invalid">
+    Salvar
+  </button>
+</form>

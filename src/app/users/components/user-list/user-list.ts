@@ -8,11 +8,20 @@ import { User } from '../../models/user.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { UserForm } from '../user-form/user-form';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatCardModule, MatInputModule, MatFormFieldModule],
+  imports: [CommonModule, ReactiveFormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatButtonModule
+  ],
   templateUrl: './user-list.html',
   styleUrl: './user-list.scss',
 })
@@ -23,7 +32,31 @@ export class UserList {
   loading = false;
   error = false;
 
-  constructor(private service: UsersService) { }
+  constructor(
+    private service: UsersService,
+    private dialog: MatDialog
+  ) { }
+
+  openDialog(user?: User) {
+    const dialogRef = this.dialog.open(UserForm, {
+      width: '400px',
+      data: user || null
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) return;
+
+      if (user) {
+        this.service.updateUser({ ...user, ...result });
+      } else {
+        const newUser: User = {
+          ...result,
+          id: Date.now()
+        };
+        this.service.addUser(newUser);
+      }
+    });
+  }
 
   users$: Observable<User[]> = this.search.valueChanges.pipe(
     startWith(''),

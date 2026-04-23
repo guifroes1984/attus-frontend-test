@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { delay, Observable, of } from 'rxjs';
+import { BehaviorSubject, delay, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,15 +15,15 @@ export class UsersService {
       telefone: '999999999',
       tipoTelefone: 'celular',
     },
-     {
+    {
       id: 2,
       nome: 'Guilherme Froes',
       email: 'gui@email.com',
       cpf: '12345678900',
       telefone: '888888888',
       tipoTelefone: 'fixo',
-    }, 
-     {
+    },
+    {
       id: 3,
       nome: 'Fran Oliveira Froes',
       email: 'fran@email.com',
@@ -33,11 +33,30 @@ export class UsersService {
     }
   ];
 
-  getUsers(term: string) {
-    const filtered = this.users.filter(user =>
-      user.nome.toLowerCase().includes(term.toLowerCase())
-    );
+  private usersSubject = new BehaviorSubject<User[]>(this.users);
 
-    return of(filtered).pipe(delay(500));
+  users$ = this.usersSubject.asObservable();
+
+  getUsers(term: string): Observable<User[]> {
+    return this.users$.pipe(
+      map(users =>
+        users.filter(u =>
+          u.nome.toLowerCase().includes(term.toLowerCase())
+        )
+      )
+    );
   }
+
+  addUser(user: User) {
+    this.users = [...this.users, user];
+    this.usersSubject.next(this.users);
+  }
+
+  updateUser(updated: User) {
+    this.users = this.users.map(u =>
+      u.id === updated.id ? updated : u
+    );
+    this.usersSubject.next(this.users);
+  }
+
 }
