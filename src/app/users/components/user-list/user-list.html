@@ -1,10 +1,20 @@
-<input [formControl]="search" placeholder="Buscar usuário..." />
+<div class="container">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Buscar usuário</mat-label>
+    <input matInput [formControl]="search" />
+  </mat-form-field>
 
-<div *ngIf="loading">Carregando...</div>
-<div *ngIf="error">Erro ao carregar usuários</div>
+  <div *ngIf="loading">Carregando...</div>
+  <div *ngIf="error">Erro ao carregar usuários</div>
 
-<div *ngIf="users$ | async as users">
-  <div *ngFor="let user of users">
-    <p>{{ user.nome }} - {{ user.email }}</p>
+  <div *ngIf="users$ | async as users">
+    <mat-card *ngFor="let user of users" class="user-card">
+      <h3>{{ user.nome }}</h3>
+      <p>{{ user.email }}</p>
+    </mat-card>
+
+    <div *ngIf="!users.length && !loading">
+      Nenhum usuário encontrado
+    </div>
   </div>
 </div>

@@ -15,6 +15,22 @@ export class UsersService {
       telefone: '999999999',
       tipoTelefone: 'celular',
     },
+     {
+      id: 2,
+      nome: 'Guilherme Froes',
+      email: 'gui@email.com',
+      cpf: '12345678900',
+      telefone: '888888888',
+      tipoTelefone: 'fixo',
+    }, 
+     {
+      id: 3,
+      nome: 'Fran Oliveira Froes',
+      email: 'fran@email.com',
+      cpf: '12345678900',
+      telefone: '777777777',
+      tipoTelefone: 'celular',
+    }
   ];
 
   getUsers(term: string) {
