@@ -5,7 +5,7 @@ import { delay, Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class Users {
+export class UsersService {
   private users: User[] = [
     {
       id: 1,
