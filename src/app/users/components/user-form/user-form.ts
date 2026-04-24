@@ -20,28 +20,32 @@ export class UserForm {
   form!: FormGroup;
 
   constructor(
-  private fb: FormBuilder,
-  private dialogRef: MatDialogRef<UserForm>,
-  @Inject(MAT_DIALOG_DATA) public data: User | null
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<UserForm>,
+    @Inject(MAT_DIALOG_DATA) public data: User | null
   ) { }
 
-ngOnInit() {
-  this.form = this.fb.group({
-    nome: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    cpf: ['', Validators.required],
-    tipoTelefone: ['celular', Validators.required],
-  });
+  ngOnInit() {
+    this.form = this.fb.group({
+      nome: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      cpf: ['', Validators.required],
+      tipoTelefone: ['celular', Validators.required],
+    });
 
-  if (this.data) {
-    this.form.patchValue(this.data);
+    if (this.data) {
+      this.form.patchValue(this.data);
+    }
   }
-}
 
   salvar() {
     if (this.form.valid) {
       this.dialogRef.close(this.form.value);
     }
+  }
+
+  fechar() {
+    this.dialogRef.close();
   }
 
 }

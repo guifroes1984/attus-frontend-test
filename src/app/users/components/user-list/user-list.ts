@@ -23,8 +23,8 @@ import { UserForm } from '../user-form/user-form';
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatButtonModule, 
-    MatIconModule, 
+    MatButtonModule,
+    MatIconModule,
     MatTooltipModule
   ],
   templateUrl: './user-list.html',
@@ -44,7 +44,8 @@ export class UserList {
 
   openDialog(user?: User) {
     const dialogRef = this.dialog.open(UserForm, {
-      width: '400px',
+      width: '450px',
+      panelClass: 'no-scroll-dialog',
       data: user || null
     });
 
