@@ -1,59 +1,45 @@
-# AttusFrontendTest
+# Projeto
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+Projeto desenvolvido em Angular com foco em boas práticas de arquitetura, organização de código e uso de componentes reutilizáveis.
 
-## Development server
+---
 
-To start a local development server, run:
+## Como rodar
 
 ```bash
+npm install
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse: http://localhost:4200
 
-## Code scaffolding
+Tecnologias
+Angular 17
+RxJS
+Angular Material
+Decisões técnicas
+Uso de RxJS
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+O RxJS foi utilizado para lidar com operações assíncronas e gerenciamento de estado reativo, especialmente em:
 
-```bash
-ng generate component component-name
-```
+chamadas HTTP
+manipulação de streams de dados
+controle de eventos do usuário
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+A escolha do RxJS se dá porque ele já é amplamente integrado ao Angular e permite maior controle sobre fluxos complexos, como:
 
-```bash
-ng generate --help
-```
+debounce em buscas
+cancelamento de requisições (switchMap)
+composição de múltiplas fontes de dados
+Signals (Angular 17)
 
-## Building
+Signals não foram adotados como padrão principal neste projeto, mas poderiam ser usados para:
 
-To build the project run:
+estados locais simples
+reatividade mais direta e menos verbosa
+substituição de BehaviorSubjects em casos simples
 
-```bash
-ng build
-```
+Optou-se por manter RxJS como principal abordagem por:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+maior maturidade no ecossistema Angular
+melhor suporte para cenários complexos (HTTP + operadores)
+maior familiaridade em projetos corporativos
