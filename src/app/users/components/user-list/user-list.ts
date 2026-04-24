@@ -10,6 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { UserForm } from '../user-form/user-form';
 
 @Component({
@@ -20,7 +23,9 @@ import { UserForm } from '../user-form/user-form';
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule, 
+    MatIconModule, 
+    MatTooltipModule
   ],
   templateUrl: './user-list.html',
   styleUrl: './user-list.scss',

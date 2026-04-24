@@ -12,8 +12,8 @@
       <h3>{{ user.nome }}</h3>
       <p>{{ user.email }}</p>
 
-      <button mat-button color="primary" (click)="openDialog(user)">
-        Editar
+      <button mat-button color="primary" matTooltip="Editar usuário" (click)="openDialog(user)">
+       <mat-icon>edit</mat-icon>
       </button>
     </mat-card>
 
@@ -23,6 +23,6 @@
   </div>
 </div>
 
-<button mat-fab color="warn" class="fab" (click)="openDialog()">
-  +
+<button mat-fab color="warn" class="fab" matTooltip="Adicionar novo usuário" (click)="openDialog()">
+   <mat-icon>add</mat-icon>
 </button>

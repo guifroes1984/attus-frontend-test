@@ -2,6 +2,7 @@
   max-width: 800px;
   margin: 40px auto;
   padding: 0 16px;
+  padding-bottom: 80px;
 }
 
 .full-width {
@@ -10,10 +11,17 @@
 
 .user-card {
   margin-top: 16px;
+  position: relative;
 }
 
 .fab {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
 }
